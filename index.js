@@ -22,8 +22,8 @@ client.connect(err => {
         const products = req.body;
         collection.insertOne(products)
             .then(result => {
-                console.log(result.insertedCount);
-                res.send(result);
+                // console.log(result.insertedCount);
+                res.send(result.insertedCount > 0);
             })
     })
 
@@ -38,8 +38,8 @@ client.connect(err => {
         const volunteerInfo = req.body;
         volunteersCollection.insertOne(volunteerInfo)
             .then(result => {
-                console.log(result.insertedCount);
-                res.send(result);
+                // console.log(result.insertedCount);
+                res.send(result.insertedCount > 0);
             })
     })
 
@@ -66,7 +66,7 @@ client.connect(err => {
     app.delete('/deleteUser/:id', (req, res) => {
         volunteersCollection.deleteOne({ _id: ObjectID(req.params.id) })
             .then(result => {
-                console.log(result);
+                res.send(result.deletedCount > 0)
             })
     })
 
