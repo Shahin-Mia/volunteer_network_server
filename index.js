@@ -1,11 +1,10 @@
-const express = require('express')
-const app = express()
-const port = 4000
+const express = require('express');
+const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const ObjectID = require('mongodb').ObjectID
+const ObjectID = require('mongodb').ObjectID;
 require("dotenv").config();
-
+const port = 4000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -16,7 +15,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
     const collection = client.db(process.env.DB_NAME).collection("activities");
     const volunteersCollection = client.db(process.env.DB_NAME).collection("volunteers");
-    console.log("Database connected")
+    console.log("Database connected");
 
     app.post('/addActivity', (req, res) => {
         const products = req.body;
